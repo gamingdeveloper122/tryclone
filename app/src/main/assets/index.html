@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Puzzle Nova - Cosmic Logic Puzzle Odyssey</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Embark on an infinite cosmic puzzle odyssey with Puzzle Nova. Match celestial lattice blocks, trigger supernova combos, and unlock cosmic mysteries. Play free now!">
+    <meta name="keywords" content="puzzle, cosmic puzzle, block game, space puzzle, puzzle nova, mobile puzzle game, HTML5 game">
+    <meta name="author" content="Puzzle Nova Team">
+    <link rel="canonical" href="https://puzzlenova.skrwins.app/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://puzzlenova.skrwins.app/">
+    <meta property="og:title" content="Puzzle Nova - Cosmic Logic Puzzle Odyssey">
+    <meta property="og:description" content="Match celestial lattice blocks, trigger supernova combos, and solve cosmic puzzles. Fully responsive space puzzle experience.">
+    <meta property="og:image" content="logo.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://puzzlenova.skrwins.app/">
+    <meta property="twitter:title" content="Puzzle Nova - Cosmic Logic Puzzle Odyssey">
+    <meta property="twitter:description" content="Match celestial lattice blocks, trigger supernova combos, and solve cosmic puzzles. Fully responsive space puzzle experience.">
+    <meta property="twitter:image" content="logo.jpg">
+
+    <!-- Web App & PWA capabilities for Chrome -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#090514">
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="logo.jpg">
+
+    <!-- External Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Interactive Cosmic Starfield Background -->
+    <canvas id="starfield-canvas"></canvas>
+
+    <!-- Global App Wrapper -->
+    <div id="app-container">
+
+        <!-- 1. SPLASH SCREEN -->
+        <div id="screen-splash" class="app-screen active">
+            <div class="splash-content">
+                <div class="logo-outer-glow">
+                    <div class="logo-card">
+                        <img src="logo.jpg" alt="Puzzle Nova Logo" class="official-logo">
+                    </div>
+                </div>
+                <h1 class="glow-text">PUZZLE NOVA</h1>
+                <p class="tagline">SOLVE. EXPLORE. BECOME.</p>
+                
+                <div class="loader-container" id="loader-container-box">
+                    <div class="loader-bar" id="splash-progress"></div>
+                </div>
+                <p class="loader-status" id="splash-status">Assembling Stellar Lattice...</p>
+
+                <!-- Chrome Launch "PLAY NOW" & PWA Install Buttons -->
+                <div class="splash-launch-actions" id="splash-launch-actions">
+                    <button class="btn btn-primary btn-play-now glow-btn" id="btn-splash-play">
+                        <span class="btn-icon">▶</span> PLAY NOW
+                    </button>
+                    <button class="btn btn-dark btn-pwa-install hidden" id="btn-pwa-install-splash">
+                        <span class="btn-icon">📱</span> ADD TO HOME SCREEN
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. MAIN MENU SCREEN -->
+        <div id="screen-menu" class="app-screen">
+            <div class="menu-content">
+                <div class="menu-header">
+                    <div class="logo-glow-medium">
+                        <div class="logo-card-small">
+                            <img src="logo.jpg" alt="Puzzle Nova Logo" class="official-logo-small">
+                        </div>
+                    </div>
+                    <p class="subtitle-cosmic">THE INFINITE ODYSSEY</p>
+                </div>
+
+                <div class="stats-pills">
+                    <div class="pill gold"><span class="emoji">🪙</span> <span id="menu-coins">0</span></div>
+                    <div class="pill purple"><span class="emoji">💎</span> <span id="menu-gems">0</span></div>
+                    <div class="pill cyan"><span class="emoji">🔥</span> <span id="menu-highscore">0</span></div>
+                </div>
+
+                <div class="menu-actions">
+                    <button class="btn btn-primary glow-btn" id="btn-menu-instant-play">
+                        <span class="btn-icon">▶</span> PLAY NOW
+                    </button>
+                    <button class="btn btn-secondary" id="btn-play-campaign">
+                        <span class="btn-icon">🌌</span> SOLVE CAMPAIGN
+                    </button>
+                    <button class="btn btn-secondary" id="btn-play-infinite">
+                        <span class="btn-icon">⚡</span> INFINITE MODE
+                    </button>
+                    <button class="btn btn-dark" id="btn-instructions">
+                        <span class="btn-icon">📖</span> HOW TO PLAY
+                    </button>
+                    <button class="btn btn-dark" id="btn-settings">
+                        <span class="btn-icon">⚙️</span> CONFIGURATION
+                    </button>
+                    <button class="btn btn-dark btn-pwa-install hidden" id="btn-pwa-install-menu">
+                        <span class="btn-icon">📱</span> ADD TO HOME SCREEN
+                    </button>
+                </div>
+
+                <div class="menu-footer">
+                    <p>Puzzle Nova v1.8.0 - Cosmic Web Edition</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. CONFIGURATION (SETTINGS) SCREEN -->
+        <div id="screen-settings" class="app-screen">
+            <div class="settings-content">
+                <div class="header-bar">
+                    <button class="btn-back" id="btn-settings-back">←</button>
+                    <h2 class="title-panel">SYSTEM CONFIGURATION</h2>
+                </div>
+
+                <div class="settings-logo-container">
+                    <div class="logo-glow-small">
+                        <div class="logo-card-medium">
+                            <img src="logo.jpg" alt="Puzzle Nova Logo" class="official-logo-medium">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-box">
+                    <h3 class="settings-category">AUDIO & IMMERSION</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-desc">
+                            <span class="item-emoji">🔊</span>
+                            <div class="item-text">
+                                <span class="item-title">Sound FX</span>
+                                <span class="item-sub">UI clicks & crystal matches</span>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-sound" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-desc">
+                            <span class="item-emoji">🎵</span>
+                            <div class="item-text">
+                                <span class="item-title">Cosmic Music</span>
+                                <span class="item-sub">Generative ambient synthesizer</span>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-music" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-desc">
+                            <span class="item-emoji">📳</span>
+                            <div class="item-text">
+                                <span class="item-title">Tactile Feedbacks</span>
+                                <span class="item-sub">Haptic pulse interactions</span>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-haptic" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-box">
+                    <h3 class="settings-category">ACCESSIBILITY</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-desc">
+                            <span class="item-emoji">🧸</span>
+                            <div class="item-text">
+                                <span class="item-title">Kids Mode</span>
+                                <span class="item-sub">Simplified shapes & infinite turns</span>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-kids">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-footer">
+                    <button class="btn btn-secondary" id="btn-reset-data">RESET COSMIC PROGRESS</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. INSTRUCTIONS SCREEN -->
+        <div id="screen-instructions" class="app-screen">
+            <div class="instructions-content">
+                <div class="header-bar">
+                    <button class="btn-back" id="btn-instructions-back">←</button>
+                    <h2 class="title-panel">STAR NAVIGATOR</h2>
+                </div>
+
+                <div class="instruction-body">
+                    <div class="instruction-card">
+                        <div class="inst-num">1</div>
+                        <div class="inst-details">
+                            <h4>Celestial Shapes</h4>
+                            <p>Pick up glowing stellar block fragments from the bottom dock.</p>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <div class="inst-num">2</div>
+                        <div class="inst-details">
+                            <h4>Forge Lattices</h4>
+                            <p>Place fragments onto the 8x8 cosmic grid. Fill complete rows or columns to synthesize them.</p>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <div class="inst-num">3</div>
+                        <div class="inst-details">
+                            <h4>Supernova Burst</h4>
+                            <p>Clear multiple rows/columns simultaneously to initiate a supernova burst for bonus gems, multiplier energy, and coins!</p>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <div class="inst-num">4</div>
+                        <div class="inst-details">
+                            <h4>Infinite Matrix</h4>
+                            <p>The game finishes if you run out of vacant zones to accommodate your incoming cosmic shards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. GAMEPLAY SCREEN -->
+        <div id="screen-gameplay" class="app-screen">
+            <!-- Header HUD bar -->
+            <div class="gameplay-header">
+                <!-- Left: Home Button -->
+                <button class="btn-hud" id="btn-game-home">🏠</button>
+                
+                <!-- Center: Small Header Logo -->
+                <div class="gameplay-header-logo">
+                    <div class="logo-card-nano">
+                        <img src="logo.jpg" alt="Logo" class="official-logo-nano">
+                    </div>
+                </div>
+
+                <!-- Right: Balance stats -->
+                <div class="hud-stats">
+                    <div class="hud-pill gold">🪙 <span id="hud-coins">0</span></div>
+                    <div class="hud-pill purple">💎 <span id="hud-gems">0</span></div>
+                </div>
+            </div>
+
+            <!-- Main Game Area -->
+            <div class="gameplay-workspace">
+                <div class="score-panel">
+                    <div class="score-block">
+                        <span class="score-label">COSMIC ENERGY</span>
+                        <span class="score-val" id="hud-score">00000</span>
+                    </div>
+                    <div class="score-block">
+                        <span class="score-label">HIGH SCORE</span>
+                        <span class="score-val" id="hud-best-score">00000</span>
+                    </div>
+                </div>
+
+                <!-- Level / Objective Indicator (Shown during campaign) -->
+                <div class="objective-bar" id="game-objective-container">
+                    <span class="obj-text" id="game-objective-text">Target: Clear 3 columns to unlock Nebula Gate</span>
+                    <span class="obj-progress" id="game-objective-progress">0/3</span>
+                </div>
+
+                <!-- Interactive Canvas Grid Container -->
+                <div class="grid-container">
+                    <canvas id="game-grid-canvas"></canvas>
+                </div>
+
+                <!-- Space piece dock selectors -->
+                <div class="pieces-dock" id="pieces-dock">
+                    <div class="dock-slot" id="slot-0" data-index="0"></div>
+                    <div class="dock-slot" id="slot-1" data-index="1"></div>
+                    <div class="dock-slot" id="slot-2" data-index="2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. LOADING SCREEN OVERLAY (BETWEEN SHIFTS) -->
+        <div id="loading-overlay" class="loading-overlay-hidden">
+            <div class="loading-overlay-content">
+                <div class="logo-glow-medium pulsing">
+                    <div class="logo-card-small">
+                        <img src="logo.jpg" alt="Puzzle Nova Logo" class="official-logo-small">
+                    </div>
+                </div>
+                <div class="overlay-spinner"></div>
+                <p class="overlay-text" id="loading-overlay-text">ASSEMBLING PUZZLE LATTICE...</p>
+            </div>
+        </div>
+
+        <!-- 7. GAME OVER DIALOG OVERLAY -->
+        <div id="dialog-gameover" class="dialog-overlay">
+            <div class="dialog-box">
+                <h2 class="dialog-title">MATRIX CRITICAL</h2>
+                <p class="dialog-sub">No remaining configurations available on the stellar grid.</p>
+                
+                <div class="gameover-results">
+                    <div class="res-row">
+                        <span>Energy Harvested:</span>
+                        <span class="res-highlight" id="go-score">0</span>
+                    </div>
+                    <div class="res-row">
+                        <span>Coins Awarded:</span>
+                        <span class="res-highlight gold-text">+<span id="go-coins">0</span></span>
+                    </div>
+                    <div class="res-row">
+                        <span>Gems Synthesized:</span>
+                        <span class="res-highlight purple-text">+<span id="go-gems">0</span></span>
+                    </div>
+                </div>
+
+                <div class="dialog-actions">
+                    <button class="btn btn-primary" id="btn-go-restart">TRY AGAIN</button>
+                    <button class="btn btn-secondary" id="btn-go-menu">ABORT TO BASE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. LEVEL COMPLETED CELEBRATION DIALOG OVERLAY -->
+        <div id="dialog-win" class="dialog-overlay">
+            <div class="dialog-box completed-box">
+                <h2 class="dialog-title win-title">LATTICE RESOLVED</h2>
+                <p class="dialog-sub">Nebula Quantum Gate has been successfully unlocked!</p>
+                
+                <div class="gameover-results">
+                    <div class="res-row">
+                        <span>Lattice Coins:</span>
+                        <span class="res-highlight gold-text">+50</span>
+                    </div>
+                    <div class="res-row">
+                        <span>Cosmic Gems:</span>
+                        <span class="res-highlight purple-text">+5</span>
+                    </div>
+                </div>
+
+                <div class="dialog-actions">
+                    <button class="btn btn-primary" id="btn-win-next">NEXT UNIVERSE</button>
+                    <button class="btn btn-secondary" id="btn-win-menu">RETURN TO MENU</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Main Game Script -->
+    <script src="app.js"></script>
+    <script>
+        // Register PWA Service Worker for offline resilience
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('Quantum Service Worker Registered', reg))
+                    .catch(err => console.error('Quantum Alignment Failed', err));
+            });
+        }
+    </script>
+</body>
+</html>

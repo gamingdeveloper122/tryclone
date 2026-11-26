@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://puzzlenova.skrwins.app/sitemap.xml

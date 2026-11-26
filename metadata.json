@@ -1,0 +1,6 @@
+{
+  "name": "Puzzle Nova",
+  "description": "A highly polished, premium brain and logic casual puzzle game featuring multiple puzzle categories, 700+ handcrafted deterministic levels, custom themes, and full offline support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

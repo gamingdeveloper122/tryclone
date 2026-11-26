@@ -1,0 +1,27 @@
+{
+  "name": "Puzzle Nova - Cosmic Logic Puzzle",
+  "short_name": "Puzzle Nova",
+  "description": "Infinite cosmic space block-matching logic puzzle odyssey.",
+  "id": "com.puzzlenova.app",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090514",
+  "theme_color": "#090514",
+  "categories": ["games", "puzzle"],
+  "icons": [
+    {
+      "src": "logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
